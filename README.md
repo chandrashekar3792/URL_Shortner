@@ -1,4 +1,4 @@
-# URL_Shortner :- 
+# URL_Shortner 
 <h1 align="center">Creating custom URL shortener With MERN Stack</h1>
 
 ## Features:-
