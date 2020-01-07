@@ -1,0 +1,12 @@
+# package directories
+frontend/node_modules
+backend/node_modules
+.git
+data
+# Serverless directories
+.serverless
+.idea
+backend/apidoc/
+backend/package-lock.json
+frontend/package-lock.json
+frontend/yarn.lock

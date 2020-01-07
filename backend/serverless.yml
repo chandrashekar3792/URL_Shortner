@@ -1,0 +1,47 @@
+
+service: url-shortner
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage}
+custom:
+  serverless-offline:
+    host: 0.0.0.0
+# you can add packaging information here
+package:
+ include:
+   - lib/buildResponse*
+   - lib/connectMongo*
+   - lib/connectRedis*
+   - lib/rateLimiter*
+   - config/**
+   - models/**
+   - controllers/**
+ exclude:
+   - test/**
+
+
+functions:
+  getURL:
+    handler: API/getURL.getShortURL
+    events:
+      - http:
+          path: /{shortid}
+          method: get
+          cors:  true
+
+  generateShortURL:
+    handler: API/generateURL.generateShortURL
+    events:
+      - http:
+          path: api/v1/shorturl/new
+          method: POST
+          # cors: true
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-include-dependencies
